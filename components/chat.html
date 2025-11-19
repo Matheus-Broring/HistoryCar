@@ -7,56 +7,6 @@
 
   <!-- CSS PRINCIPAL -->
   <link rel="stylesheet" href="../css/style.css">
-  <style>
-    /* Chat estilo live com scroll */
-    #chatMessages {
-      height: 400px; /* altura fixa para a caixa */
-      overflow-y: auto; /* cria a barra de rolagem */
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      background: #f9f9f9;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .message {
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: #e0e0e0;
-      max-width: 70%;
-    }
-
-    .own-message {
-      background: #3b82f6;
-      color: white;
-      align-self: flex-end;
-    }
-
-    .message-user {
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin-bottom: 4px;
-    }
-
-    .message-time {
-      font-weight: normal;
-      font-size: 0.7rem;
-      margin-left: 5px;
-      color: #555;
-    }
-
-    #clearChat {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background: red;
-      color: #fff;
-      cursor: pointer;
-    }
-  </style>
 </head>
 
 <body>
@@ -66,13 +16,14 @@
 
   <!-- Cards iguais da Home -->
   <div class="cards-container">
-      <div class="card">
-        <img src="../style/img/lupa.png" class="icon-lupa">
-      </div>
-
-      <div class="card">
-        <img src="../style/img/OIP-removebg-preview (1).png" class="icon-perfil">
-      </div>
+    <div class="card lupa-card" title="Pesquisar">
+      <a href="chat.html"><img src="/style/img/lupa.png" alt="Ícone de lupa" class="icon-lupa" id="lupaIcon" /></a>
+    </div>
+    <div class="card perfil-card" title="Perfil">
+      <a href="login.html">
+        <img src="/style/img/OIP-removebg-preview (1).png" alt="Ícone de perfil" class="icon-perfil" />
+      </a>
+    </div>
   </div>
 
   <!-- Dark Mode -->
@@ -93,7 +44,7 @@
     <h2 class="des2">💬 Chat em Tempo Real</h2>
 
     <div id="connectionStatus"></div>
-    <div id="chatMessages" class="chat-messages"></div>
+    <div id="chatMessages" class="chat-messages" style="max-height:400px;overflow-y:auto;"></div>
 
     <!-- FORMULÁRIO -->
     <form id="chatForm" style="display:flex;gap:10px;margin-top:20px;">
@@ -103,7 +54,9 @@
     </form>
 
     <!-- BOTÃO LIMPAR CHAT -->
-    <button id="clearChat">Limpar Chat</button>
+    <button id="clearChat" style="margin-top:10px;padding:10px 20px;border:none;border-radius:8px;background:red;color:#fff;cursor:pointer;">
+      Limpar Chat
+    </button>
 
   </div>
 

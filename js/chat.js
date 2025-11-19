@@ -25,14 +25,14 @@ const connectionStatus = document.getElementById("connectionStatus");
         return;
     }
 
-    // Buscar nome real na tabela users
+    // Buscar nome real do usuário na tabela profiles
     const { data: userData } = await supabase
-        .from("users")
-        .select("name")
+        .from("profiles")
+        .select("username")
         .eq("id", currentUser.id)
         .single();
 
-    currentUserName = userData?.name || "Usuário";
+    currentUserName = userData?.username || "Você";
 
     connectionStatus.innerHTML = `🟢 Logado como: ${currentUserName}`;
 
@@ -51,7 +51,6 @@ async function loadMessages() {
 
     chatMessages.innerHTML = "";
     data?.forEach(msg => addMessageToDOM(msg));
-
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
@@ -61,19 +60,15 @@ async function loadMessages() {
 function addMessageToDOM(msg) {
     const div = document.createElement("div");
     div.classList.add("message");
+    if (msg.user_id === currentUser.id) div.classList.add("own-message");
 
-    if (msg.user_id === currentUser.id) {
-        div.classList.add("own-message");
-    }
+    const sender = msg.user_id === currentUser.id ? currentUserName : msg.sender_name || "Usuário";
 
     div.innerHTML = `
         <div class="message-user">
-            ${msg.user_id === currentUser.id ? currentUserName : msg.sender_name}
+            ${sender}
             <span class="message-time">
-                ${new Date(msg.created_at).toLocaleTimeString("pt-BR", {
-                    hour: "2-digit",
-                    minute: "2-digit"
-                })}
+                ${new Date(msg.created_at).toLocaleTimeString("pt-BR", { hour: '2-digit', minute: '2-digit' })}
             </span>
         </div>
         <div class="message-content">${msg.message}</div>
@@ -85,7 +80,6 @@ function addMessageToDOM(msg) {
 
 // -------------------------
 // Realtime (sem duplicar)
-// -------------------------
 function setupRealtime() {
     if (realtimeChannel) {
         supabase.removeChannel(realtimeChannel);
@@ -118,7 +112,7 @@ document.getElementById("chatForm").addEventListener("submit", async (e) => {
     await supabase.from("chat_messages").insert([
         {
             user_id: currentUser.id,
-            sender_name: currentUserName,  // <<< Aqui está a correção
+            sender_name: currentUserName,
             message: text
         }
     ]);
