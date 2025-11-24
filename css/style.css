@@ -663,12 +663,12 @@ input:focus {
 
 .botao {
   flex-direction: row; /* coloca na horizontal */
-  gap: 20px;
+  gap: 1px;
   padding: 2%;
 }
 
 .botao img {
-  width: auto;
+  width: 180px;
   height: 150px;
 }
 
@@ -876,4 +876,4 @@ button:hover {
 
 .direitos {
   color: white;
-}/*# sourceMappingURL=style.css.map */
+}
