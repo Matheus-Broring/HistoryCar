@@ -130,17 +130,19 @@ input:checked + .slider:before {
 
 .logoM {
   width: 35vw;
-  max-width: 420px;
+  max-width: 40vw;
   display: block;
   margin: 120px auto 40px;
-  height: auto;
+  height: 35vh;
+  max-height: 40vh;
 }
 
 .jubileu {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  
+justify-content: center;
+align-items: center;
+max-width: 100%;
+max-height: 100%;
 }
 
 .des {
@@ -557,7 +559,7 @@ input:checked + .slider:before {
 }
 
 img {
-  max-width: 100%;
+  max-width: 1000%;
   max-height: 100%;
 }
 
