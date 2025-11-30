@@ -26,7 +26,6 @@ body {
 
 .barra {
   position: fixed;
-  top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -46,10 +45,6 @@ body {
   height: 190px;
 }
 
-.barra.aberta ~ .cards-container {
-  transform: translateY(160px);
-}
-
 .search-area {
   width: 68%;
   max-width: 680px;
@@ -58,7 +53,7 @@ body {
   border-radius: 31px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 28px;
   gap: 16px;
   opacity: 0;
@@ -75,12 +70,20 @@ body {
 
 #searchInput {
   width: 100%;
+  text-align: center;
   font-size: 18px;
   font-family: "Raleway", sans-serif;
   color: #222;
   background: transparent;
   border: none;
   outline: none;
+  margin-top: 1.25rem;
+}
+
+#searchInput:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
 }
 
 #searchInput::placeholder {
@@ -88,11 +91,17 @@ body {
 }
 
 #searchBtn {
+  position: absolute;
+  right: 28px;
   font-size: 26px;
   background: none;
   border: none;
   cursor: pointer;
-  color: #555;  
+  color: #0066ff;
+}
+
+.barra.aberta ~ .cards-container {
+  transform: translateY(160px);
 }
 
 .cards-container {
@@ -100,39 +109,13 @@ body {
 }
 
 @media (max-width: 768px) {
-  .barra {
-    height: 80px;
-  }
-  .barra.aberta {
-    height: 175px;
-  }
-  .barra.aberta ~ .cards-container {
-    transform: translateY(95px);
-  }
-  .search-area {
-    width: 82%;
-    height: 58px;
-  }
+  .barra.aberta ~ .cards-container { transform: translateY(145px); }
+  .search-area { width: 82%; }
 }
 
 @media (max-width: 480px) {
-  .barra {
-    height: 75px;
-  }
-  .barra.aberta {
-    height: 165px;
-  }
-  .barra.aberta ~ .cards-container {
-    transform: translateY(90px);
-  }
-  .search-area {
-    width: 88%;
-    height: 54px;
-    padding: 0 20px;
-  }
-  #searchInput {
-    font-size: 17px;
-  }
+  .barra.aberta ~ .cards-container { transform: translateY(135px); }
+  .search-area { width: 88%; }
 }
 
 .dark-mode-toggle {
@@ -987,8 +970,8 @@ button:hover {
 }
 
 .nav-chat-card img {
-  width: 60%;
-  height: 60%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
   margin: 0 auto;
