@@ -25,74 +25,115 @@ body {
 }
 
 .barra {
-  background: #999;
-  height: 5vh;
-  width: 100vw;
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 100%;
+  height: 30px;
+  background: #999;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  overflow: hidden;
+  transition: height 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.barra.aberta {
+  height: 190px;
+}
+
+.barra.aberta ~ .cards-container {
+  transform: translateY(160px);
 }
 
 .search-area {
-  display: none;
-  position: absolute;
-  top: 5vh;
-  left: 0;
-  width: 100%;
-  height: 6vh;
-  background: #999;
+  width: 68%;
+  max-width: 680px;
+  height: 62px;
+  background: #f5f5f5;
+  border-radius: 31px;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  z-index: 1500;
+  justify-content: space-between;
+  padding: 0 28px;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
 }
 
-
-.show-search {
-  display: flex !important;
+.barra.aberta .search-area {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
 }
 
 #searchInput {
-  padding: 8px 14px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  outline: none;
-  font-size: 1rem;
-  background: #fff;
+  width: 100%;
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
   color: #222;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
-.dark-mode #searchInput {
-  background: #2a2a2a;
-  color: #eee;
-  border-color: #555;
+#searchInput::placeholder {
+  color: #888;
 }
 
 #searchBtn {
-  padding: 8px 14px;
-  border-radius: 10px;
-  background: #555;
-  color: white;
+  font-size: 26px;
+  background: none;
   border: none;
   cursor: pointer;
+  color: #555;  
 }
 
-#searchBtn:hover {
-  background: #333;
+.cards-container {
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (max-width: 768px) {
+  .barra {
+    height: 80px;
+  }
+  .barra.aberta {
+    height: 175px;
+  }
+  .barra.aberta ~ .cards-container {
+    transform: translateY(95px);
+  }
+  .search-area {
+    width: 82%;
+    height: 58px;
+  }
 }
 
 @media (max-width: 480px) {
-  #searchInput {
-    width: 140px;
-    padding: 8px 10px;
+  .barra {
+    height: 75px;
   }
-
-  #searchBtn {
-    padding: 7px 10px;
+  .barra.aberta {
+    height: 165px;
+  }
+  .barra.aberta ~ .cards-container {
+    transform: translateY(90px);
+  }
+  .search-area {
+    width: 88%;
+    height: 54px;
+    padding: 0 20px;
+  }
+  #searchInput {
+    font-size: 17px;
   }
 }
-
 
 .dark-mode-toggle {
   position: fixed;
